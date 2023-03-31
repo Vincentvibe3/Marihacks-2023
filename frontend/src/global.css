@@ -1,0 +1,356 @@
+
+/* Import into html when developing */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+/* Define variables */
+:root{
+
+	/* Global Colors */
+
+	/* Primary */
+	--p100:#2075AA;
+	--p200:#0A67A1;
+	--p300:#0A5987;
+	--p400:#0A527A;
+	--p500:#0A4F73;
+	--p600:#0A4B6C;
+	--p700:#0A445F;
+	--p800:#0A3D51;
+	--p900:#0A2E36;
+	
+	/* Secondary */
+	--s100:#def3ff;
+	--s200:#c2d5f2;
+	--s300:#a7b8e6;
+	--s400:#8b9ad9;
+	--s500:#6f7ccc;
+	--s600:#535ebf;
+	--s700:#3841b3;
+	--s800:#1c23a6;
+	--s900:#000599;
+	
+	/* Neutral */
+	--n100:#ffffff;
+	--n200:#fafafa;
+	--n300:#f0f0f0;
+	--n400:#c0c0c0;
+	--n500:#909090;
+	--n600:#606060;
+	--n700:#303030;
+	--n800:#161616;
+	--n900:#000000;
+
+	/* Error */
+	--e100:#db8484;
+	--e200:#db5c5c;
+	--e300:#db3434;
+
+	/* Warning */
+	--w100:#dbae84;
+	--w200:#db995c;
+	--w300:#db8434;
+
+	/* Info */
+	--i100:#f2da91;
+	--i200:#f2ce60;
+	--i300:#f2c12e;
+
+	/* Success */
+	--g100:#8bdb84;
+	--g200:#61c758;
+	--g300:#36b32b;
+
+	/* Global Typography */
+
+	/* Family */
+	--font-family: 'Plus Jakarta Sans', sans-serif;
+
+	/* Font Styles */
+	--heading1:700 3rem var(--font-family);
+	--heading2:700 2.625rem var(--font-family);
+	--heading3:700 2.25rem var(--font-family);
+	--heading4:700 1.875rem var(--font-family);
+	--heading5:700 1.5rem var(--font-family);
+	--heading6:700 1.25rem var(--font-family);
+	--subtitle:300 1.25rem var(--font-family);
+	--body:400 1rem var(--font-family);
+	--body2:400 0.8125rem var(--font-family);
+	--buttons:600 0.875rem var(--font-family);
+	--caption:400 0.75rem  var(--font-family);
+
+
+	/* Styles */
+
+	--borderRadius: 1.25rem;
+
+	/* Button */
+	--btnFont:var(--buttons);
+
+	/* Button Primary */
+	--btnPrimaryBg: var(--p700);
+	--btnPrimaryBgFocus: var(--p900);
+	--btnPrimaryBorder: var(--p600);
+	--btnPrimaryBorderFocus: var(--p800);
+	--btnPrimaryText: var(--n200);
+	--btnPrimaryTextFocus: var(--n200);
+	--btnPrimaryIconFill:var(--n100);
+	--btnPrimaryIconStroke:var(--n100);
+	--btnPrimaryIconFillFocus:var(--n100);
+	--btnPrimaryIconStrokeFocus:var(--n100);
+
+	/* Button Secondary */
+	--btnSecondaryBg: transparent;
+	--btnSecondaryBgFocus: var(--p200);
+	--btnSecondaryText: var(--p800);
+	--btnSecondaryTextFocus: var(--p800);
+	--btnSecondaryBorder: var(--p800);
+	--btnSecondaryIconFill:var(--p800);
+	--btnSecondaryIconStroke:var(--p800);
+	--btnSecondaryIconFillFocus:var(--p800);
+	--btnSecondaryIconStrokeFocus:var(--p800);
+
+	/* Button Tertiary */
+	--btnTertiaryBg: transparent;
+	--btnTertiaryBgFocus: var(--p200);
+	--btnTertiaryText: var(--p800);
+	--btnTertiaryTextFocus: var(--p800);
+	--btnTertiaryIconFill:var(--p800);
+	--btnTertiaryIconStroke:var(--p800);
+	--btnTertiaryIconFillFocus:var(--p800);
+	--btnTertiaryIconStrokeFocus:var(--p800);
+
+	/* Button Disabled */
+	--btnDisabledBg:var(--n300);
+	--btnDisabledBorder:transparent;
+	--btnDisabledText:var(--n600);
+	--btnDisabledIconFill:var(--n500);
+	--btnDisabledIconStroke:var(--n500);
+
+	/* Button Danger */
+	--btnDangerText:var(--n200);
+	--btnDangerTextFocus:var(--n200);
+	--btnDangerBorder:var(--e100);
+	--btnDangerBg:var(--e200);
+	--btnDangerBgFocus:var(--e300);
+	--btnDangerBorderFocus:var(--e200);
+	--btnDangerIconFill:var(--n100);
+	--btnDangerIconStroke:var(--n100);
+	--btnDangerIconFillFocus:var(--n100);
+	--btnDangerIconStrokeFocus:var(--n100);
+
+	/* TextInput*/
+	--inputFont:var(--body2);
+	--inputBg:var(--n300);
+	--inputBorder:transparent;
+	--inputText:var(--n800);
+	--inputIconBtnBg:var(--n400);
+	--inputPlaceholderText:var(--n600);
+	--inputIconColor:var(--n600);
+	--inputBorderFocus:var(--p900);
+	--inputBorderValid:var(--g300);
+	--inputBorderInvalid:var(--e300);
+
+	/* TextArea */
+	--textAreaFont:var(--body);
+	--textAreaBg:var(--n300);
+	--textAreaBorder: transparent;
+	--textAreaText:var(--n800);
+	--textAreaPlaceholderText:var(--n600);
+	--textAreaBorderFocus:var(--p900);
+
+	/* Checkbox */
+	--checkboxSelected:var(--p900);
+	--checkboxUnselected:var(--p600);
+	--checkboxCheck:var(--n100);
+
+	/* Radio */
+	--radioSelected:var(--p900);
+	--radioUnselected:var(--p600);
+
+	/* Spinner */
+	--spinnerIcon:var(--p900);
+	--spinnerIconComplete:var(--n100);
+	--spinnerIconError:var(--n100);
+	--spinnerBgComplete:var(--g300);
+	--spinnerBgError:var(--e300);
+	--spinnerProgressBg:var(--n300);
+
+
+	/* Dropdown */
+	--dropdownFont:var(--body2);
+	--dropdownFontOption:var(--body2);
+	--dropdownBg:var(--n300);
+	--dropdownBorder:transparent;
+	--dropdownBorderFocus:var(--p900);
+	--dropdownText:var(--n800);
+
+	/* Search */
+	--searchFont:var(--body2);
+	--searchFontOption:var(--body2);
+	--searchBg:var(--n300);
+	--searchBorder:transparent;
+	--searchText:var(--n800);
+	--searchIconBtnBg:var(--n400);
+	--searchPlaceholderText:var(--n600);
+	--searchIconColor:var(--n600);
+	--searchBorderFocus:var(--p900);
+	--searchBorderValid:var(--g300);
+	--searchBorderInvalid:var(--e300);
+
+	/* Header */
+	--headerFont:var(--heading1);
+	/* --headerBg:var(--n300); */
+	--headerBg:var(--p800);
+	--headerTextLight:var(--n700);
+	--headerTextLight:var(--n100);
+	--headerTextDark:var(--n300);
+	--headerBorderBottom:var(--n400)
+
+	/* Backdrop */
+	--backdropColor:var(--n900);
+
+	/* Navbar*/
+	--navBg:var(--p600);
+	--navFont:var(--body);
+	--navBgTitleHover:var(--n800);
+	--navTextTitleHover:var(--n200);
+	--navTextTransparent:var(--n100);
+	--navIconTransparent:var(--n100);
+	--navText:var(--n100);
+	--navIcon:var(--n100);
+	--navIconHover:var(--n100);
+	--navBottomBorder:var(--p400);
+
+	/* Sidebar */
+	--sidebarCloseFont:var(--buttons);
+	--sidebarCloseBg:var(--n800);
+	--sidebarCloseBgFocus:var(--n900);
+	--sidebarCloseText:var(--n200);
+	--sidebarCloseTextFocus:var(--n200);
+	--sidebarCloseIcon:var(--n200);
+	--sidebarCloseIconFocus:var(--n200);
+	--sidebarBg:var(--n200);
+	/* --sidebarCloseFont:var(--buttons);
+	--sidebarCloseBg:var(--n800);
+	--sidebarCloseBgFocus:var(--n900);
+	--sidebarCloseText:var(--n200);
+	--sidebarCloseTextFocus:var(--n200);
+	--sidebarCloseIcon:var(--n200);
+	--sidebarCloseIconFocus:var(--n200);
+	--sidebarBg:var(--n800); */
+
+	/* SidebarLink */
+	--sidebarLinkText:var(--n800);
+	/* --sidebarLinkText:var(--n100); */
+	--sidebarLinkBg:var(--n300);
+	--sidebarLinkTextFocus:var(--n800);
+	/* --sidebarLinkTextFocus:var(--n100); */
+	--sidebarLinkBgFocus:var(--n300);
+	/* --sidebarLinkBgFocus:var(--n700); */
+	--sidebarLinkBorderBottom:var(--n400);
+	--sidebarLinkBorderBottomFocus:var(--n500);
+	--sidebarLinkFont:var(--buttons);
+	--sidebarCurrent:var(--p600)
+
+	/* SidebarSlot */
+	--sidebarSlotBg:var(--n300);
+	--sidebarSlotBorderBottom:var(--n400);
+	--sidebarSlotText:var(--n800);
+	--sidebarSlotFont:var(--body);
+
+	/* Modal */
+	--modalCloseFont:var(--body2);
+	--modalCloseText:var(--n800);
+	--modalTitleFont:var(--subtitle);
+	--modalBg:var(--n200);
+	--modalFont:var(--body);
+	--modalText:var(--n800);
+	--modalTitleText:var(--n800);
+
+	/* Separator */
+	--separatorBg:var(--n400);
+
+	/* BackToTop */
+	--backToTopBg:var(--p700);
+	--backToTopBgFocus:var(--p900);
+	--backToTopBorder:var(--p600);
+	--backToTopBorderFocus:var(--p800);
+	--backToTopText:var(--n200);
+	--backToTopTextFocus:var(--n200);
+	--backToTopIcon:var(--n200);
+	--backToTopIconFocus:var(--n200);
+
+	/* Card */
+	--cardBg:var(--n300);
+	--cardBgFocus:var(--n400);
+
+	/* Scaffold */
+	--scaffoldPadding:3rem;
+
+	/* ContentContainer */
+	--contentContainerPadding:0rem;
+	--contentContainerGap:1rem;
+
+	/* Slider */
+	--sliderThumbBg:var(--p600);
+	--sliderThumbBgFocus:var(--p700);
+	--sliderThumbBorder:var(--p700);
+	--sliderThumbBorderFocus:var(--p800);
+	--sliderTrackBg:var(--n300);
+	--sliderTrackBgActive:var(--n400);
+
+	/* Table */
+	--tableFont:var(--body);
+	--tableBg:var(-n300);
+	--tableHeaderBg:var(--p400);
+	--tableHeaderBorderBottom:var(--p800);
+	--tableBorder:var(--n400)
+	--tableBgHover:var(--n400)
+
+	/* CodeBlock */
+	--codeblockBg:var(--n400);
+
+	/* Link */
+	--linkArrowBg:var(--p900);
+	--linkArrowFg:var(--n100);
+	--linkFg:var(--n900);
+	--linkVisitedFg:var(--s600);
+	--linkFgFocus:var(--p900);
+
+	/* IconLink */
+	--iconLinkStroke:var(--n800);
+	--iconLinkFill:var(--n800);
+	--iconLinkStrokeFocus:var(--n400);
+	--iconLinkFillFocus:var(--n400);
+
+	/* Fixed Grid */
+	--fixedGridGap: 2rem;
+
+}
+
+h1 {
+	font: var(--heading1);
+}
+h2 {
+	font: var(--heading2);
+}
+h3 {
+	font: var(--heading3);
+}
+h4 {
+	font: var(--heading4);
+}
+h5 {
+	font: var(--heading5);
+}
+h6 {
+	font: var(--heading6);
+}
+
+p{
+	font: var(--body);
+}
+
+a {
+	font: var(--body);
+}
