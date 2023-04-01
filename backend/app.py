@@ -92,7 +92,24 @@ def log():
     # abort(403)
     return "", 403
 
-@app.route("/getUser", methods=["GET"])
-def getUser():
+@app.route("/getUserSleepData", methods=["GET"])
+def getUserSleepData():
     with open("users.json","r") as userFile:
-        
+        for i in userFile:
+            if session['username'] == i["username"]:
+                dayNumber = i["sleepData"]["today"]
+                if dayNumber == 1:
+                    day = "monday"
+                elif dayNumber == 2:
+                    day = "tuesday"
+                elif dayNumber == 3:
+                    day = "wednesday"
+                elif dayNumber == 4:
+                    day = "thursday"
+                elif dayNumber == 5:
+                    day = "friday"
+                elif dayNumber == 6:
+                    day = "saturday"
+                elif dayNumber == 7:
+                    day = "sunday"
+                dataToBeSent = dict(data = 0, weeksum = i["sleepData"]["weekSum"], username = i["username"])
