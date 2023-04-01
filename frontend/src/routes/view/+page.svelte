@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
     import type { PageData } from './$types';
 	import { onMount } from 'svelte';
     import { ContentContainer, Scaffold } from 'nota-ui';
@@ -7,6 +8,7 @@
 
 	let sleepChart:HTMLCanvasElement
 	let sleepTime:HTMLCanvasElement
+
     onMount(()=>{
 		new Chart(
 			sleepTime,
