@@ -125,3 +125,4 @@ def getUserSleepData():
                 elif dayNumber == 7:
                     day = "sunday"
                 dataToBeSent = dict(data = 0, weeksum = i["sleepData"]["weekSum"], username = i["username"])
+                return dataToBeSent
