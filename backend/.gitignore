@@ -1,5 +1,4 @@
 env
-users.json
 test.db
 *.pyc
 /__pycache__
