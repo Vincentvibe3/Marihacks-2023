@@ -86,7 +86,7 @@ class User:
         self.timeStopSleep = 0
         #do not reset today
 
-users = [User(i["user"], i["timeSlept"], i["timeStopSleep"], i["weekSum"], i["sleepDate"], i["wakeUpDate"], i["monday"], i["tuesday"], i["wednesday"], i["thursday"], i["friday"], i["saturday"], i["sunday"], i["today"]) for i in data]
+users = [User(i["username"], i["timeSlept"], i["timeStopSleep"], i["weekSum"], i["sleepDate"], i["wakeUpDate"], i["monday"], i["tuesday"], i["wednesday"], i["thursday"], i["friday"], i["saturday"], i["sunday"], i["today"]) for i in data]
 
 def leaderboard():
     return users.sort(key=lambda x: x.weekSum, reverse=True)
