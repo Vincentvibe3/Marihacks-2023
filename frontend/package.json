@@ -20,6 +20,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"chart.js": "^4.2.1",
 		"install": "^0.13.0",
 		"nota-ui": "0.0.16-alpha",
 		"npm": "^9.6.3"
