@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  	import { onMount } from 'svelte';
     import type { PageData } from './$types';
-	import { onMount } from 'svelte';
     import { ContentContainer, Scaffold } from 'nota-ui';
     
     export let data: PageData;
@@ -57,21 +56,35 @@
 			}
 		)
 	})
-
-	let hours
-	let day
-	let awake
-	let asleep
+{
+	data:[
+		{
+			hours:6,
+			day:"monday",
+			awake:8,
+			asleep:22
+		},
+		{
+			hours:6,
+			day:"monday",
+			awake:8,
+			asleep:22
+		}
+	]
+}
+	let hours = []
+	let day = []
+	let awake = []
+	let asleep = []
 	async function getData(url ="") {
 		const response = await fetch(url)
 		let data = await response.json()
-		hours = data.hours;
-		day = data.day;
-		awake = data.awake;
-		asleep = data.asleep;
-
-
-
+		for (let Day of data){
+			hours.push(Day.hours),
+			hours.push(Day.day),
+			hours.push(Day.asleep),
+			hours.push(Day.awake)
+		}
 		return response.json();
 	}
 </script>
