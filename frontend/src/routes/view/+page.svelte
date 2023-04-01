@@ -8,7 +8,13 @@
 	let sleepChart:HTMLCanvasElement
 	let sleepTime:HTMLCanvasElement
 
+	let hours= []
+	let day = []
+	let awake = []
+	let asleep =[]
+
     onMount(()=>{
+		getData()
 		new Chart(
 			sleepTime,
 			{
@@ -72,12 +78,10 @@
 		}
 	]
 }
-	let hours = []
-	let day = []
-	let awake = []
-	let asleep = []
-	async function getData(url ="") {
-		const response = await fetch(url)
+
+
+	async function getData() {
+		const response = await fetch("http://127.0.0.1:5000/getUserSleepData", {credentials: 'include'})
 		let data = await response.json()
 		for (let Day of data){
 			hours.push(Day.hours),
@@ -89,12 +93,22 @@
 	}
 </script>
 <Scaffold>
-	<!-- <ContentContainer direction="column"> -->
-		<canvas bind:this={sleepChart} id="sleepChart"></canvas>
-		<canvas bind:this={sleepTime} id="sleepChart"></canvas>
-	<!-- </ContentContainer> -->
+	<ContentContainer direction="column">
+		<div class="wrapper">
+			<canvas bind:this={sleepChart} id="sleepChart"></canvas>
+			<canvas bind:this={sleepTime} id="sleepChart"></canvas>
+		</div>
+	</ContentContainer>
 </Scaffold>
 
 <svelte:head>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </svelte:head>
+<style>
+	.wrapper {
+		position: relative;
+		top: 3rem;
+		margin-bottom: 2rem;
+		width: 100%;
+	}
+</style>

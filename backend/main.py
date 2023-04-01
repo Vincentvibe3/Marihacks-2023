@@ -1,8 +1,8 @@
 import json
 import random
 
-with open('users.json') as a:
-    data = json.load(a)
+# with open('users.json') as a:
+#     data = json.load(a)
     
 class User:
     def __init__(self,
@@ -85,13 +85,51 @@ class User:
         self.timeStopSleep = 0
         #do not reset today
 
-users = [User(i["username"], i["sleepData"]["timeSlept"], i["sleepData"]["timeStopSleep"], i["sleepData"]["weekSum"], i["sleepData"]["sleepDate"], i["sleepData"]["wakeUpDate"], i["sleepData"]["monday"], i["sleepData"]["tuesday"], i["sleepData"]["wednesday"], i["sleepData"]["thursday"], i["sleepData"]["friday"], i["sleepData"]["saturday"], i["sleepData"]["sunday"], i["sleepData"]["today"]) for i in data]
+# users = [User(i["username"], i["sleepData"]["timeSlept"], i["sleepData"]["timeStopSleep"], i["sleepData"]["weekSum"], i["sleepData"]["sleepDate"], i["sleepData"]["wakeUpDate"], i["sleepData"]["monday"], i["sleepData"]["tuesday"], i["sleepData"]["wednesday"], i["sleepData"]["thursday"], i["sleepData"]["friday"], i["sleepData"]["saturday"], i["sleepData"]["sunday"], i["sleepData"]["today"]) for i in data]
 
-def leaderboard():
-    return users.sort(key=lambda x: x.weekSum, reverse=True)
+def processUser(timeSlept, timeStopSleep, weekday, username, raw):
+    with open('users.json') as a:
+        data = json.load(a)
+        print(data)
+        for user in data:
+            if user["username"] == username:
+                if user["sleepData"] == "null":
+                    processingUser = User(user["username"], timeSlept, timeStopSleep, weekday,  weekday, weekday+1, today=weekday)
+                else:
+                    processingUser = User(user["username"], timeSlept, timeStopSleep, weekday,  weekday, weekday+1, user["sleepData"]["monday"], user["sleepData"]["tuesday"], user["sleepData"]["wednesday"], user["sleepData"]["thursday"], user["sleepData"]["friday"], user["sleepData"]["saturday"], user["sleepData"]["sunday"], weekday)
+                processingUser.todaySleep()
+                processingUser.amountSleptCompare()
+                finalData = {}
+                finalData["timeSlept"] = processingUser.timeSlept
+                finalData["timeStopSleep"] = processingUser.timeStopSleep
+                finalData["weekSum"] = processingUser.weekSum
+                finalData["sleepDate"] = processingUser.sleepDate
+                finalData["wakeUpDate"] = processingUser.wakeUpDate
+                finalData["monday"] = processingUser.monday
+                finalData["tuesday"] = processingUser.tuesday
+                finalData["wednesday"] = processingUser.wednesday
+                finalData["thursday"] = processingUser.thursday
+                finalData["friday"] = processingUser.friday
+                finalData["saturday"] = processingUser.saturday
+                finalData["sunday"] = processingUser.sunday
+                finalData["today"] = processingUser.today   
+                if user["sleepData"] != "null" and "raw" in user["sleepData"]:
+                    finalData["raw"] = user["sleepData"]["raw"]
+                    finalData["raw"].append(raw)
+                else:
+                    finalData["raw"] = [raw]
 
-with open('quotes.txt', 'r', encoding='utf-8') as f:
-    quotes = [line.strip() for line in f]
+                with open("users.json", "w") as userFile:
+                    user["sleepData"] = finalData
+                    userFile.write(json.dumps(data))
+                
 
-def getMessage(): #just call this function once a day
-    return random.choice(quotes)
+
+# def leaderboard():
+#     return users.sort(key=lambda x: x.weekSum, reverse=True)
+
+# with open('quotes.txt', 'r', encoding='utf-8') as f:
+#     quotes = [line.strip() for line in f]
+
+# def getMessage(): #just call this function once a day
+#     return random.choice(quotes)
