@@ -103,3 +103,35 @@ def log():
         print(request.json)
         return "", 200
     return "", 403
+
+@app.route("/getUserSleepData", methods=["GET"])
+def getUserSleepData():
+    with open("users.json","r") as userFile:
+        for i in userFile:
+            if session['username'] == i["username"]:
+                data = []
+                for j in i["sleepData"]["raw"]:
+                    year, month, day = j["sleepData"]["raw"]["day"].split("-")
+                    date = datetime.date(int(year), int(month), int(day))
+                    weekday = date.weekday()+1
+                    if weekday == 1:
+                        day = "monday"
+                    elif weekday == 2:
+                        day = "tuesday"
+                    elif weekday == 3:
+                        day = "wednesday"
+                    elif weekday == 4:
+                        day = "thursday"
+                    elif weekday == 5:
+                        day = "friday"
+                    elif weekday == 6:
+                        day = "saturday"
+                    elif weekday == 7:
+                        day = "sunday"
+                    dailyData = dict(hours = 24 - j["sleepData"]["raw"]["start"] + j["sleepData"]["raw"]["end"],
+                                     day = day,
+                                     awake = j["sleepData"]["raw"]["end"],
+                                     asleep = j["sleepData"]["raw"]["start"])
+                    data.append(dailyData)
+                dataToBeSent = dict(data = data, weeksum = i["sleepData"]["weekSum"], username = i["username"])
+                return dataToBeSent
