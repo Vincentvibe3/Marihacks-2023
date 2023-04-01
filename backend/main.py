@@ -1,24 +1,25 @@
 import json
+import random
 
-with open('data.json') as file:
-    data = json.load(file)
+with open('data.json') as a:
+    data = json.load(a)
 
-class user:
+class User:
     def __init__(self,
-                user:str,
-                timeSlept:int,
-                timeStopSleep:int,
-                weekSum:int,
-                sleepDate:int,
-                wakeUpDate:int,
-                monday:int,
-                tuesday:int,
-                wednesday:int,
-                thursday:int,
-                friday:int,
-                saturday:int,
-                sunday:int,
-                today:int):
+                user:str=None,
+                timeSlept:int=0,
+                timeStopSleep:int=0,
+                weekSum:int=0,
+                sleepDate:int=0,
+                wakeUpDate:int=0,
+                monday:int=0,
+                tuesday:int=0,
+                wednesday:int=0,
+                thursday:int=0,
+                friday:int=0,
+                saturday:int=0,
+                sunday:int=0,
+                today:int=0):
         self.user = user
         self.timeSlept = timeSlept
         self.timeStopSleep = timeStopSleep
@@ -37,7 +38,7 @@ class user:
     def sleepCount(self):
         return self.timeStopSleep - self.timeSlept if self.wakeUpDate == self.sleepDate else 24 - self.timeSlept + self.timeStopSleep
     
-    def amountSleptCompare(self):
+    def amountSleptCompare(self): 
         if(self.today == 1):
             return self.monday - self.sunday
         elif(self.today == 2):
@@ -53,7 +54,7 @@ class user:
         elif(self.today == 7):
             return self.sunday - self.saturday
     
-    def todaySleep(self):
+    def todaySleep(self): #call once a day
         self.weekSum += self.sleepCount()
         if(self.today == 1):
             self.monday = self.sleepCount()
@@ -69,6 +70,29 @@ class user:
             self.saturday = self.sleepCount()
         elif(self.today == 7):
             self.sunday = self.sleepCount()
-
-users = [user(i["user"], i["timeSlept"], i["timeStopSleep"], i["weekSum"], i["sleepDate"], i["wakeUpDate"], i["monday"], i["tuesday"], i["wednesday"], i["thursday"], i["friday"], i["saturday"], i["sunday"], i["today"]) for i in data]
     
+    def reset(self): #call once a week
+        self.monday = 0
+        self.tuesday = 0
+        self.wednesday = 0
+        self.thursday = 0
+        self.friday = 0
+        self.saturday = 0
+        #do not reset sunday
+        self.weekSum = 0
+        self.timeSlept = 0
+        self.sleepDate = 0
+        self.wakeUpDate = 0
+        self.timeStopSleep = 0
+        #do not reset today
+
+users = [User(i["user"], i["timeSlept"], i["timeStopSleep"], i["weekSum"], i["sleepDate"], i["wakeUpDate"], i["monday"], i["tuesday"], i["wednesday"], i["thursday"], i["friday"], i["saturday"], i["sunday"], i["today"]) for i in data]
+
+def leaderboard():
+    return users.sort(key=lambda x: x.weekSum, reverse=True)
+
+with open('quotes.txt', 'r', encoding='utf-8') as f:
+    quotes = [line.strip() for line in f]
+
+def getMessage(): #just call this function once a day
+    return random.choice(quotes)
