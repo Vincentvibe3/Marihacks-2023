@@ -8,12 +8,13 @@
 	let sleepChart:HTMLCanvasElement
 	let sleepTime:HTMLCanvasElement
 
-	let hours:unknown
-	let day:unknown
-	let awake:unknown
-	let asleep:unknown
+	let hours= []
+	let day = []
+	let awake = []
+	let asleep =[]
 
     onMount(()=>{
+		getData()
 		new Chart(
 			sleepTime,
 			{
@@ -77,16 +78,10 @@
 		}
 	]
 }
-	let hours = []
-	let day = []
-	let awake = []
-	let asleep = []
-	async function getData(url ="") {
-		const response = await fetch(url)
 
 
 	async function getData() {
-		const response = await fetch("http://127.0.0.1:5000/getUserSleepData")
+		const response = await fetch("http://127.0.0.1:5000/getUserSleepData", {credentials: 'include'})
 		let data = await response.json()
 		for (let Day of data){
 			hours.push(Day.hours),
