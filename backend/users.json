@@ -17,5 +17,24 @@
             "today": 0
         },
         "hash": "yourMom"
+    },
+    {
+        "username": "mom",
+        "sleepData":{
+            "timeSlept": 1,
+            "timeStopSleep": 2,
+            "weekSum": 3,
+            "sleepDate": 4,
+            "wakeUpDate": 5,
+            "monday": 6,
+            "tuesday": 7,
+            "wednesday": 8,
+            "thursday": 9,
+            "friday": 10,
+            "saturday": 11,
+            "sunday": 12,
+            "today": 13
+        },
+        "hash": "thyMother"
     }
 ]
