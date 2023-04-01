@@ -4,6 +4,7 @@ import json
 import secrets
 import bcrypt
 import datetime
+import main
 
 login_manager = LoginManager()
 
@@ -12,12 +13,16 @@ app.secret_key ="5v6rvuuvtuvfue"
 
 valid_tokens = []
 
-def saveUser(name, hash):
+def saveUser(name, hashed):
     with open("users.json", "r") as userFile:
         users = json.loads(userFile.read())
         with open("users.json", "w") as userFileW:
-            users[name] = hash
-            userFileW.write(json.dumps(users))
+            newUser = {}
+            newUser["username"] = name
+            newUser["hash"] = hashed
+            newUser["sleepData"] = "null"
+            users.append(newUser)
+            userFileW.write(json.dumps(users, indent=4))
         
 def genToken():
     return secrets.token_urlsafe(16)
@@ -35,8 +40,10 @@ def check_hash(password, hash_string):
 def login_auth(username, password):
     with open("users.json", "r") as userFile:
         users = json.loads(userFile.read())
-        hashed = users[username]
-        return bcrypt.checkpw(password.encode("utf-8"), hashed.encode("utf-8"))
+        for user in users:
+            if user["username"] == username:
+                hashed = user["hash"]
+                return bcrypt.checkpw(password.encode("utf-8"), hashed.encode("utf-8"))
 
 def session_auth(session):
     if 'token' in session:
@@ -81,17 +88,23 @@ def logout():
 def log():
     if (session_auth(session)):
         data = request.json
+        start = data["start"]
+        end = data["end"]
         year, month, day = data["day"].split("-")
-        date = datetime.date(year, month, day)
-        date.weekday()
+        date = datetime.date(int(year), int(month), int(day))
+        weekday = date.weekday()+1
+        username = session["username"]
+        main.processUser(start, end, weekday, username, data)
         return "", 200
     return "", 403
 
-@app.route("/log", methods=["GET"])
+@app.route("/leaderboard", methods=["GET"])
 def leaderboard():
+    with open("users.json", "r") as userFile:
+        users = json.loads(userFile.read())
     return ""
-    
+
 @app.route("/getUser", methods=["GET"])
 def getUser():
     with open("users.json","r") as userFile:
-       
+       pass
