@@ -7,6 +7,10 @@
 
     onMount(()=>{
         loggedIn=document.cookie.includes("loggedIn=true")
+        if(!loggedIn&&document.location.href == "/home"){
+			document.location.href = "/home"
+		}
+
     })
 
     const goHome = () => {

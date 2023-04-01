@@ -136,7 +136,29 @@ def getUserSleepData():
 @app.route("/leaderboard", methods=["GET"])
 def leaderboard():
     with open("users.json", "r") as userFile:
-        users = json.loads(userFile.read())
+        currentUser = session["username"]
+        users = json.load(userFile)
+        finalData = {}
+        formattedData = []
+        for user in users:
+            if user["username"] ==  currentUser:
+                finalData["current"] = {
+                        "username":user["username"],
+                        "time":user["sleepData"]["weekSum"]
+                    }
+            else:
+                if user["sleepData"] != "null":
+                    formattedData.append(
+                        {
+                            "username":user["username"],
+                            "time":user["sleepData"]["weekSum"]
+                        }
+                    )
+        formattedData.sort(key = lambda x: x["time"])
+        formattedData.reverse()
+        finalData["others"] = formattedData
+        return json.dumps(finalData)
+
     return ""
 
 @app.route("/getUser", methods=["GET"])
