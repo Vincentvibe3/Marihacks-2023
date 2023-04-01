@@ -4,7 +4,6 @@
 
   	export let sleepStart:number
 	export let sleepEnd:number
-	export let user:number
 	export let day:number
 
 	let status: "loading" | "error" | "complete" | undefined
@@ -20,7 +19,6 @@
 			body: JSON.stringify({
 				start:sleepStart,
 				end:sleepEnd,
-				user:user,
 				day:day
 			})
 		})

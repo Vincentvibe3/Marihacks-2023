@@ -1,13 +1,11 @@
 from flask import Flask, request, make_response, redirect, session, abort
 from flask_login import LoginManager
-import sqlite3
 import json
-import sys
 import secrets
 import bcrypt
 import datetime
+import main
 
-import os
 login_manager = LoginManager()
 
 app = Flask(__name__)
@@ -15,22 +13,16 @@ app.secret_key ="5v6rvuuvtuvfue"
 
 valid_tokens = []
 
-cx = sqlite3.connect("test.db")
-cu = cx.cursor()
-cu.execute("CREATE TABLE IF NOT EXISTS userdata(username, pwd_hash, sleepdata)")
-
-    # insert values into a table cu.execute("insert into lang values (?, ?)", ("C", 1972))
-
-    # execute a query and iterate over the result for row in cu.execute("select * from lang"):
-
-cx.close()
-
-def saveUser(name, hash):
+def saveUser(name, hashed):
     with open("users.json", "r") as userFile:
         users = json.loads(userFile.read())
         with open("users.json", "w") as userFileW:
-            users[name] = hash
-            userFileW.write(json.dumps(users))
+            newUser = {}
+            newUser["username"] = name
+            newUser["hash"] = hashed
+            newUser["sleepData"] = "null"
+            users.append(newUser)
+            userFileW.write(json.dumps(users, indent=4))
         
 def genToken():
     return secrets.token_urlsafe(16)
@@ -48,14 +40,15 @@ def check_hash(password, hash_string):
 def login_auth(username, password):
     with open("users.json", "r") as userFile:
         users = json.loads(userFile.read())
-        hashed = users[username]
-        return bcrypt.checkpw(password.encode("utf-8"), hashed.encode("utf-8"))
+        for user in users:
+            if user["username"] == username:
+                hashed = user["hash"]
+                return bcrypt.checkpw(password.encode("utf-8"), hashed.encode("utf-8"))
 
 def session_auth(session):
     if 'token' in session:
         token = session['token']
         # Check jwt
-        print(valid_tokens)
         if token in valid_tokens:
             return True
     return False
@@ -93,18 +86,25 @@ def logout():
 
 @app.route("/log", methods=["POST"])
 def log():
-    print(request.cookies)
-    print(session)
     if (session_auth(session)):
         data = request.json
+        start = data["start"]
+        end = data["end"]
         year, month, day = data["day"].split("-")
-        date = datetime.date(year, month, day)
-        date.weekday()
-        print(request.json)
+        date = datetime.date(int(year), int(month), int(day))
+        weekday = date.weekday()+1
+        username = session["username"]
+        main.processUser(start, end, weekday, username, data)
         return "", 200
     return "", 403
+
+@app.route("/leaderboard", methods=["GET"])
+def leaderboard():
+    with open("users.json", "r") as userFile:
+        users = json.loads(userFile.read())
+    return ""
 
 @app.route("/getUser", methods=["GET"])
 def getUser():
     with open("users.json","r") as userFile:
-       
+       pass

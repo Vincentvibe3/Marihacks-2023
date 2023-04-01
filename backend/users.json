@@ -1,21 +1,38 @@
 [
     {
-        "username": "user",
-        "sleepData":{
-            "timeSlept": 0,
-            "timeStopSleep": 0,
-            "weekSum": 0,
-            "sleepDate": 0,
-            "wakeUpDate": 0,
+        "username": "test",
+        "hash": "$2b$12$WSPLwDEVUageNc.3JCW0IOY3lEYrfAVOYEz/AW5tK.7FozHO6Stn6",
+        "sleepData": {
+            "timeSlept": 10,
+            "timeStopSleep": 20,
+            "weekSum": 40,
+            "sleepDate": 6,
+            "wakeUpDate": 7,
             "monday": 0,
             "tuesday": 0,
             "wednesday": 0,
             "thursday": 0,
             "friday": 0,
-            "saturday": 0,
+            "saturday": 34,
             "sunday": 0,
-            "today": 0
-        },
-        "hash": "yourMom"
+            "today": 6,
+            "raw": [
+                {
+                    "start": 20,
+                    "end": 10,
+                    "day": "0002-02-02"
+                },
+                {
+                    "start": 10,
+                    "end": 20,
+                    "day": "0002-02-02"
+                },
+                {
+                    "start": 10,
+                    "end": 20,
+                    "day": "0002-02-02"
+                }
+            ]
+        }
     }
 ]
