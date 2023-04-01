@@ -80,7 +80,7 @@
 	<!-- </ContentContainer> -->
 </Scaffold>
 <ContentContainer>
-	<CardLink href="https://www.youtube.com/watch?v=V-_O7nl0Ii0">Guide to better sleeping</CardLink>
+	<CardLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Guide to better sleeping</CardLink>
 </ContentContainer>
 <svelte:head>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
