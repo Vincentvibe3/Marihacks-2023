@@ -25,6 +25,6 @@ import type { PageData } from './$types';
                 Register
             </Button>
         </ContentContainer>
-        <Link href="">How do I sleep better?</Link>
+        <Link href="https://www.cdc.gov/sleep/about_sleep/sleep_hygiene.html">How do I sleep better?</Link>
     </ContentContainer>
 </Scaffold>
