@@ -56,22 +56,7 @@
 			}
 		)
 	})
-{
-	data:[
-		{
-			hours:6,
-			day:"monday",
-			awake:8,
-			asleep:22
-		},
-		{
-			hours:6,
-			day:"monday",
-			awake:8,
-			asleep:22
-		}
-	]
-}
+	
 	let hours = []
 	let day = []
 	let awake = []
@@ -81,9 +66,9 @@
 		let data = await response.json()
 		for (let Day of data){
 			hours.push(Day.hours),
-			hours.push(Day.day),
-			hours.push(Day.asleep),
-			hours.push(Day.awake)
+			day.push(Day.day),
+			asleep.push(Day.asleep),
+			awake.push(Day.awake)
 		}
 		return response.json();
 	}

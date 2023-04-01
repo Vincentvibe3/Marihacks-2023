@@ -1,0 +1,18 @@
+{
+   "data":[
+        {
+            "hours":6,
+            "day":"monday",
+            "awake":8,
+            "asleep":22
+        },
+        {
+            "hours":6,
+            "day":"monday",
+            "awake":8,
+            "asleep":22
+        }
+    ],
+    "weeksum":40,
+    "username":"sdgagd"
+}
