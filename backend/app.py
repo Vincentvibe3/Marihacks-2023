@@ -3,6 +3,9 @@ from flask_login import LoginManager
 import sqlite3
 import json
 import sys
+import secrets
+import bcrypt
+import datetime
 
 import os
 login_manager = LoginManager()
@@ -29,17 +32,24 @@ def saveUser(name, hash):
             users[name] = hash
             userFileW.write(json.dumps(users))
         
+def genToken():
+    return secrets.token_urlsafe(16)
+
 def hash_password(password):
-    return ""
+    password = password.encode('utf-8')
+    salt = bcrypt.gensalt()
+    hashed = bcrypt.hashpw(password, salt)
+    return hashed.decode("utf-8")
+
+def check_hash(password, hash_string):
+    hashed, password = hash_string.split(":")
+    return bcrypt.checkpw(password, hashed)
 
 def login_auth(username, password):
-    hash = hash_password(password)
     with open("users.json", "r") as userFile:
         users = json.loads(userFile.read())
-        if username in users:
-            if hash == users[username]:
-                return True
-    return False
+        hashed = users[username]
+        return bcrypt.checkpw(password.encode("utf-8"), hashed.encode("utf-8"))
 
 def session_auth(session):
     if 'token' in session:
@@ -57,10 +67,10 @@ def login():
     password = request.form['password']
     if login_auth(username, password):
         session['username'] = request.form['username']
-        session['token'] = "1234"
+        token = genToken()
+        session['token'] = token
         valid_tokens.append(session['token'])
-        print("received")
-        return redirect("http://127.0.0.1:5173")
+        return redirect("http://127.0.0.1:5173/callback?loggedIn=true")
     return redirect("http://127.0.0.1:5173/login")
 
 
@@ -70,29 +80,31 @@ def register():
     password = request.form['password']
     session['username'] = username
     saveUser(username, hash_password(password))
-    token = "1234"
+    token = genToken()
     session['token'] = token
-    print(session)
     valid_tokens.append(token)
-    print("received")
-    return redirect("http://127.0.0.1:5173")
+    return redirect("http://127.0.0.1:5173/callback?loggedIn=true")
 
-@app.route("/logout")
+@app.route("/logout", methods=["GET"])
 def logout():
     session.pop('username', None)
     session.pop('token', None)
-    return redirect("http://127.0.0.1:5173")
+    return redirect("http://127.0.0.1:5173/callback")
 
 @app.route("/log", methods=["POST"])
 def log():
     print(request.cookies)
     print(session)
     if (session_auth(session)):
+        data = request.json
+        year, month, day = data["day"].split("-")
+        date = datetime.date(year, month, day)
+        date.weekday()
+        print(request.json)
         return "", 200
-    # abort(403)
     return "", 403
 
 @app.route("/getUser", methods=["GET"])
 def getUser():
     with open("users.json","r") as userFile:
-        
+       

@@ -1,9 +1,9 @@
 <script lang="ts">
-    import {ModalController, Navbar, SiteLayout} from "nota-ui"
+    import {Button, ModalController, Navbar, SiteLayout} from "nota-ui"
   import { onMount } from "svelte";
     import { transparent, userToken } from "../stores" 
 
-    let loggedIn
+    let loggedIn:boolean
 
     onMount(()=>{
         loggedIn=document.cookie.includes("loggedIn=true")
@@ -15,10 +15,15 @@
 </svelte:head>
 <ModalController></ModalController>
 <SiteLayout>
-    <Navbar alwaysOpaque={$transparent} slot="navbar">
+    <Navbar alwaysOpaque={$transparent} slot="navbar" reverse>
         <svelte:fragment slot="title">
-            Title
+            BetterSleep
         </svelte:fragment>
+        {#if loggedIn}
+            <form action="http://127.0.0.1:5000/logout">
+                <Button type="submit">Logout</Button>
+            </form>
+        {/if}
     </Navbar>
     <slot></slot>
 </SiteLayout>
