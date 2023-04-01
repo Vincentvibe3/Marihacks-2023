@@ -10,7 +10,7 @@ import type { PageData } from './$types';
     </Header>
     <ContentContainer>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            Bettersleep is an application that allows users to track their sleep habits and compare to other users. Bettersleep trends the sleep data to allow users to see the consistency of their sleep schedule and their sleeping time, and compare that data to other users and incentivise themselves to get better quality sleep.
         </p>
     </ContentContainer>
     <ContentContainer>
