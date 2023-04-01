@@ -91,3 +91,8 @@ def log():
         return "", 200
     # abort(403)
     return "", 403
+
+@app.route("/getUser", methods=["GET"])
+def getUser():
+    with open("users.json","r") as userFile:
+        

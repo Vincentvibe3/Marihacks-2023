@@ -2,9 +2,8 @@ import json
 import random
 
 with open('users.json') as a:
-    b = json.load(a)
-    #data = b["sleepData"]
-    data = [i["sleepdata"] for i in b]
+    data = json.load(a)
+    
 
 class User:
     def __init__(self,
@@ -88,7 +87,7 @@ class User:
         self.timeStopSleep = 0
         #do not reset today
 
-users = [User(i["username"], i["sleepData"]["timeSlept"], i["sleepData"]["timeStopSleep"], i["sleepData"]["weekSum"], i["sleepData"]["sleepDate"], i["sleepData"]["wakeUpDate"], i["sleepData"]["monday"], i["sleepData"]["tuesday"], i["sleepData"]["wednesday"], i["sleepData"]["thursday"], i["sleepData"]["friday"], i["sleepData"]["saturday"], i["sleepData"]["sunday"], i["sleepData"]["today"]) for i in b]
+users = [User(i["username"], i["sleepData"]["timeSlept"], i["sleepData"]["timeStopSleep"], i["sleepData"]["weekSum"], i["sleepData"]["sleepDate"], i["sleepData"]["wakeUpDate"], i["sleepData"]["monday"], i["sleepData"]["tuesday"], i["sleepData"]["wednesday"], i["sleepData"]["thursday"], i["sleepData"]["friday"], i["sleepData"]["saturday"], i["sleepData"]["sunday"], i["sleepData"]["today"]) for i in data]
 
 def leaderboard():
     return users.sort(key=lambda x: x.weekSum, reverse=True)
