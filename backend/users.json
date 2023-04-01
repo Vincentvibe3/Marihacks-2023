@@ -14,7 +14,19 @@
             "friday": 0,
             "saturday": 0,
             "sunday": 0,
-            "today": 0
+            "today": 0,
+            "raw": [
+                {
+                    "start": 10,
+                    "end": 7,
+                    "day":"1994-02-02"
+                },
+                {
+                    "start": 10,
+                    "end": 7,
+                    "day":"1994-02-03"
+                }
+            ]
         },
         "hash": "yourMom"
     },
@@ -33,7 +45,19 @@
             "friday": 10,
             "saturday": 11,
             "sunday": 12,
-            "today": 13
+            "today": 13,
+            "raw": [
+                {
+                    "start": 24,
+                    "end": 5,
+                    "day":"1994-02-02"
+                },
+                {
+                    "start": 23,
+                    "end": 6,
+                    "day":"1994-02-03"
+                }
+            ]
         },
         "hash": "thyMother"
     }
