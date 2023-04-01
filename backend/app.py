@@ -103,3 +103,8 @@ def log():
         print(request.json)
         return "", 200
     return "", 403
+
+@app.route("/getUser", methods=["GET"])
+def getUser():
+    with open("users.json","r") as userFile:
+       
