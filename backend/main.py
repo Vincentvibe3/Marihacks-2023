@@ -86,5 +86,4 @@ class user:
         
         
     users = [user(i["user"], i["timeSlept"], i["timeStopSleep"], i["dayofTheWeek"], i["weekSum"], i["sleepDate"], i["wakeuppDate"], i["monday"], i["tuesday"], i["wednesday"], i["thursday"], i["friday"], i["saturday"], i["sunday"], i["today"]) for i in data]
-    #exec(f'user{k} = user(i["user"], i["timeSlept"], i["timeStopSleep"], i["dayofTheWeek"], i["weekSum"], i["sleepDate"], i["wakeuppDate"], i["monday"], i["tuesday"], i["wednesday"], i["thursday"], i["friday"], i["saturday"], i["sunday"], i["today"])')
     
