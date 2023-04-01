@@ -4,7 +4,6 @@ import random
 # with open('users.json') as a:
 #     data = json.load(a)
     
-
 class User:
     def __init__(self,
                 username:str=None,
@@ -24,7 +23,6 @@ class User:
         self.username = username
         self.timeSlept = timeSlept
         self.timeStopSleep = timeStopSleep
-        self.weekSum = weekSum
         self.sleepDate = sleepDate
         self.wakeUpDate = wakeUpDate
         self.monday = monday
