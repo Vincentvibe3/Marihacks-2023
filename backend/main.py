@@ -1,10 +1,9 @@
 import json
 import random
 
-with open('users.json') as a:
+with open('D:/SunWeiwei/Repo/Marihacks-2023/backend/users.json') as a:
     data = json.load(a)
     
-
 class User:
     def __init__(self,
                 username:str=None,
@@ -24,7 +23,6 @@ class User:
         self.username = username
         self.timeSlept = timeSlept
         self.timeStopSleep = timeStopSleep
-        self.weekSum = weekSum
         self.sleepDate = sleepDate
         self.wakeUpDate = wakeUpDate
         self.monday = monday
@@ -92,7 +90,7 @@ users = [User(i["username"], i["sleepData"]["timeSlept"], i["sleepData"]["timeSt
 def leaderboard():
     return users.sort(key=lambda x: x.weekSum, reverse=True)
 
-with open('quotes.txt', 'r', encoding='utf-8') as f:
+with open('D:/SunWeiwei/Repo/Marihacks-2023/backend/quotes.txt', 'r', encoding='utf-8') as f:
     quotes = [line.strip() for line in f]
 
 def getMessage(): #just call this function once a day
