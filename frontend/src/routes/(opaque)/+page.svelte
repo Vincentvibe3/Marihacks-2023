@@ -10,6 +10,13 @@
 	export let user:number
 	export let day:number
 
+	onMount(()=>{
+		let loggedIn=document.cookie.includes("loggedIn=true")
+		if(!loggedIn){
+			document.location.href = "/home"
+		}
+	})
+
 </script>
 <Scaffold>
 	<Header slot="header">

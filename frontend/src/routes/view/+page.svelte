@@ -1,7 +1,7 @@
 <script lang="ts">
   	import { onMount } from 'svelte';
     import type { PageData } from './$types';
-    import { ContentContainer, Scaffold } from 'nota-ui';
+    import { CardLink, ContentContainer, Scaffold } from 'nota-ui';
 
 	let sleepChart:HTMLCanvasElement
 	let sleepTime:HTMLCanvasElement
@@ -99,6 +99,9 @@
 			<canvas bind:this={sleepChart} id="sleepChart"></canvas>
 			<canvas bind:this={sleepTime} id="sleepChart"></canvas>
 		</div>
+	</ContentContainer>
+	<ContentContainer>
+		<CardLink href="https://www.youtube.com/watch?v=V-_O7nl0Ii0">Guide to better sleeping</CardLink>
 	</ContentContainer>
 </Scaffold>
 
