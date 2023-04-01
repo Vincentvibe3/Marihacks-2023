@@ -4,6 +4,6 @@
       
       export let data: LayoutData;
   
-    //   $transparent = true
+      $transparent = true
   </script>
   <slot></slot>

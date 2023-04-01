@@ -70,7 +70,7 @@ def login():
         token = genToken()
         session['token'] = token
         valid_tokens.append(session['token'])
-        return redirect("http://127.0.0.1:5173")
+        return redirect("http://127.0.0.1:5173/callback?loggedIn=true")
     return redirect("http://127.0.0.1:5173/login")
 
 
@@ -83,13 +83,13 @@ def register():
     token = genToken()
     session['token'] = token
     valid_tokens.append(token)
-    return redirect("http://127.0.0.1:5173")
+    return redirect("http://127.0.0.1:5173/callback?loggedIn=true")
 
-@app.route("/logout")
+@app.route("/logout", methods=["GET"])
 def logout():
     session.pop('username', None)
     session.pop('token', None)
-    return redirect("http://127.0.0.1:5173")
+    return redirect("http://127.0.0.1:5173/callback")
 
 @app.route("/log", methods=["POST"])
 def log():

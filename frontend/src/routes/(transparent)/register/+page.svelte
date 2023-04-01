@@ -1,8 +1,5 @@
 <script lang="ts">
 	import { Scaffold, TextInput, Text, PasswordInput, Button, Card } from 'nota-ui';
-    import { onMount } from 'svelte';
-    import { userToken } from '../../../stores';
-
 
 </script>
 <img class="bg" alt="Person Sleeping" src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1160&q=80"/>
