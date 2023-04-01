@@ -90,3 +90,8 @@ def log():
 @app.route("/log", methods=["GET"])
 def leaderboard():
     return ""
+    
+@app.route("/getUser", methods=["GET"])
+def getUser():
+    with open("users.json","r") as userFile:
+       
