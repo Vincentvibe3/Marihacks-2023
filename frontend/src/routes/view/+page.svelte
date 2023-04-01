@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  	import { onMount } from 'svelte';
     import type { PageData } from './$types';
-	import { onMount } from 'svelte';
     import { ContentContainer, Scaffold } from 'nota-ui';
     
     export let data: PageData;

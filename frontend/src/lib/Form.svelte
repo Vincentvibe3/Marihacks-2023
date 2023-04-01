@@ -46,7 +46,7 @@
 		<Text tag="label" caption>
 			What day is the entry for?
 		</Text>
-		<input type="date">
+		<input type="date" bind:value={day}>
 		<ContentContainer>
 			<Button on:click={sendData}>
 				Submit
