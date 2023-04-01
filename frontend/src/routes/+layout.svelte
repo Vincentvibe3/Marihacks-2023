@@ -9,13 +9,17 @@
         loggedIn=document.cookie.includes("loggedIn=true")
     })
 
+    const goHome = () => {
+        document.location.href="/"
+    }
+
 </script>
 <svelte:head>
     <link rel="stylesheet" href="/src/global.css">
 </svelte:head>
 <ModalController></ModalController>
 <SiteLayout>
-    <Navbar alwaysOpaque={$transparent} slot="navbar" reverse>
+    <Navbar on:onTitleClick={goHome} alwaysOpaque={$transparent} slot="navbar" reverse>
         <svelte:fragment slot="title">
             BetterSleep
         </svelte:fragment>

@@ -5,6 +5,11 @@
 	  onMount(()=>{
 		  let loggedIn = $page.url.searchParams.get('loggedIn') ? true : false
 		  document.cookie = `loggedIn=${loggedIn}`; 
-		  document.location.href = "/"
+		  if (loggedIn){
+			document.location.href = "/"
+		  } else {
+			document.location.href = "/home"
+		  }
+		  
 	  })
   </script>
