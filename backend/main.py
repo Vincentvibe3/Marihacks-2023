@@ -24,6 +24,7 @@ class User:
         self.timeSlept = timeSlept
         self.timeStopSleep = timeStopSleep
         self.sleepDate = sleepDate
+        self.weekSum = weekSum
         self.wakeUpDate = wakeUpDate
         self.monday = monday
         self.tuesday = tuesday

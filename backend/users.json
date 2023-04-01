@@ -1,3 +1,1 @@
-[
-    
-]
+[{"username": "test", "hash": "$2b$12$Ui5BogW/XaF0.zEQKWfb3uYoRCl15pN16wb5xUXEb//Ks3WTBszru", "sleepData": {"timeSlept": 20, "timeStopSleep": 8, "weekSum": 16, "sleepDate": 4, "wakeUpDate": 5, "monday": 14, "tuesday": 34, "wednesday": 34, "thursday": 12, "friday": 0, "saturday": 0, "sunday": 14, "today": 4, "raw": [{"start": 20, "end": 10, "day": "2003-02-02"}, {"start": 20, "end": 10, "day": "2003-02-03"}, {"start": 10, "end": 20, "day": "2003-02-04"}, {"start": 10, "end": 20, "day": "2003-02-05"}, {"start": 20, "end": 8, "day": "2003-02-06"}]}}, {"username": "test2", "hash": "$2b$12$Ra1MeSwCWU57u2m2uGFs.eKhtQMINj60XvZlL4VAwJrzumY6gXngm", "sleepData": {"timeSlept": 19, "timeStopSleep": 20, "weekSum": 32, "sleepDate": 7, "wakeUpDate": 8, "monday": 0, "tuesday": 0, "wednesday": 0, "thursday": 0, "friday": 0, "saturday": 0, "sunday": 25, "today": 7, "raw": [{"start": 19, "end": 20, "day": "2003-02-02"}]}}]

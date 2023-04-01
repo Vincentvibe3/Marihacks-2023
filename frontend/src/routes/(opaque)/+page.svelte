@@ -15,9 +15,6 @@
 	<Header slot="header">
 		Dashboard
 	</Header>
-	<Text tag="p" subtitle>User: {$userToken}</Text>
-	<Link href="/login" arrow>Login</Link>
-	<Link href="/register" arrow>Register</Link>
 	<Text tag="p" subtitle>View my sleep history</Text>
 	<Link href="/view" arrow>View my sleep history</Link>
 	<Link href="/leaderboard" arrow>View others</Link>

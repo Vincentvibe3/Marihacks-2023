@@ -2,8 +2,6 @@
   	import { onMount } from 'svelte';
     import type { PageData } from './$types';
     import { ContentContainer, Scaffold } from 'nota-ui';
-    
-    export let data: PageData;
 
 	let sleepChart:HTMLCanvasElement
 	let sleepTime:HTMLCanvasElement
@@ -13,14 +11,18 @@
 	let awake = []
 	let asleep =[]
 
-    onMount(()=>{
-		getData()
+    onMount(async ()=>{
+		await getData()
+		console.log(hours)
+		console.log(day)
+		console.log(awake)
+		console.log(asleep)
 		new Chart(
 			sleepTime,
 			{
 				type:'line',
 				data:{
-					labels:['Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Satruday', 'Sunday'],
+					labels:day,//['Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Satruday', 'Sunday'],
 					datasets:[
 						{label:'Time asleep',data:/*[-20,-21,-22,-21,-22,-21,-22]*/ asleep},
 						{label:'Time awake',data:/*[-6,-6,-6,-6,-6,-6,-6]*/awake}
@@ -45,7 +47,7 @@
 			{
 				type:'bar',
 				data: {
-					labels: ['Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Satruday', 'Sunday'],
+					labels: day,//['Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Satruday', 'Sunday'],
 					datasets: [{
 						label: 'Hours of sleep',
 						data: /*[12, 19, 3, 5, 2, 3]*/ hours,
@@ -62,34 +64,33 @@
 			}
 		)
 	})
-{
-	data:[
-		{
-			hours:6,
-			day:"monday",
-			awake:8,
-			asleep:22
-		},
-		{
-			hours:6,
-			day:"monday",
-			awake:8,
-			asleep:22
-		}
-	]
-}
+// {
+// 	data:[
+// 		{
+// 			hours:6,
+// 			day:"monday",
+// 			awake:8,
+// 			asleep:22
+// 		},
+// 		{
+// 			hours:6,
+// 			day:"monday",
+// 			awake:8,
+// 			asleep:22
+// 		}
+// 	]
+// }
 
 
 	async function getData() {
 		const response = await fetch("http://127.0.0.1:5000/getUserSleepData", {credentials: 'include'})
 		let data = await response.json()
-		for (let Day of data){
+		for (let Day of data.data){
 			hours.push(Day.hours),
-			hours.push(Day.day),
-			hours.push(Day.asleep),
-			hours.push(Day.awake)
+			day.push(Day.day),
+			awake.push(Day.asleep),
+			asleep.push(Day.awake)
 		}
-		return response.json();
 	}
 </script>
 <Scaffold>

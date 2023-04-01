@@ -102,11 +102,13 @@ def log():
 @app.route("/getUserSleepData", methods=["GET"])
 def getUserSleepData():
     with open("users.json","r") as userFile:
-        for i in userFile:
-            if session['username'] == i["username"]:
+        users = json.load(userFile)
+        for user in users:
+            username = session["username"]
+            if username == user["username"]:
                 data = []
-                for j in i["sleepData"]["raw"]:
-                    year, month, day = j["sleepData"]["raw"]["day"].split("-")
+                for j in user["sleepData"]["raw"]:
+                    year, month, day = j["day"].split("-")
                     date = datetime.date(int(year), int(month), int(day))
                     weekday = date.weekday()+1
                     if weekday == 1:
@@ -123,12 +125,12 @@ def getUserSleepData():
                         day = "saturday"
                     elif weekday == 7:
                         day = "sunday"
-                    dailyData = dict(hours = 24 - j["sleepData"]["raw"]["start"] + j["sleepData"]["raw"]["end"],
+                    dailyData = dict(hours = 24 - j["start"] + j["end"],
                                      day = day,
-                                     awake = j["sleepData"]["raw"]["end"],
-                                     asleep = j["sleepData"]["raw"]["start"])
+                                     awake = j["end"],
+                                     asleep = j["start"])
                     data.append(dailyData)
-                dataToBeSent = dict(data = data, weeksum = i["sleepData"]["weekSum"], username = i["username"])
+                dataToBeSent = dict(data = data, weeksum = user["sleepData"]["weekSum"], username = user["username"])
                 return dataToBeSent
                 
 @app.route("/leaderboard", methods=["GET"])
